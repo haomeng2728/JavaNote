@@ -36,11 +36,77 @@ Set注重独一无二的性质，用于存储无序（存入和取出顺序不�
 
 ### 1、HashSet
 
-
+哈希表中存放的是哈希值，HashSet存储的元素的顺序不是按照存入时的顺序（和List不同），而是按照哈希值来存储，获取数据也按照哈希值来获得，元素的哈希值通过元素的hashcode方法来获取。HashSet首先判断两个元素的哈希值，如果相同会接下来比较equals方法，如果返回值为true则视为同一个元素，否则就不是同一个元素。一个hashcode位置上可以存放多个元素。
 
 ### 2、TreeSet
 
-### 3、LinkedHashSet
++ TreeSet使用二叉树的原理对新add()的对象按照指定的顺序排序，每增加一个对象会自动排序，将对象插入二叉树指定位置
++ Integer和String对象都可以进行默认的TreeSet排序，而自定义的类对象是不可以的。自定义的类对象必须首先Comparable接口，并覆写相对应的compareTo()函数才可以正常使用
++ 在腹泻compare()函数时，要返回相应的值才能使TreeSet按照一定的规则来排序
++ 比较此对象与指定对象的顺序，如果该对象小于、等于或者大于指定对象，则返回负数、零或正整数
+
+### 3、LinkedHashSet(HashSet + LinkedHashMap)
+
+对于LinkedHashSet，他继承于HashSet，又基于LinkedHashMap实现。底层使用LinkedHashMap来保存所有元素，所有方法与HashSet类似。
 
 ## 四、Map
 
+### 1、HashMap（数组+链表+红黑树）
+
++ HashMap根据**键**的hashCode值存储数据，大多数情况下可以直接定位到它的值，因而有很快的访问速度但是遍历顺序是不确定的。HashMap最多允许一条记录的键为null，允许多条记录的值为null。
+
++ HashMap非线程安全，可以用Collections的synchronizedMap方法保证线程安全，或者使用ConcurrentHashMap
+
+#### 1）Java7实现
+
+HashMap里面是一个数组，数组中每个元素是一个单向链表。如下图：每个绿色的实体是嵌套类Entry的实例，Entry包含四个属性：key、value、hash和用于单向链表的next。
+
+![HashMap](./img/HashMap_Java7.png)
+
++ capacity：当前数组容量，始终保持2^n，可以扩容，扩容后数组大小为当前的2倍
++ loadFactor：负载因子，默认为0.75
++ threshold：扩容的阈值，capacity*loadFacator
+
+#### 2）Java8实现
+
+![HashMap_Java8](/Users/haomeng/Documents/Java/JavaNote/img/HashMap_Java8.png)
+
+利用红黑树堆HashMap进行改进，有数组+链表+红黑树组成。Java7中根据hash值我们可以快速定位到数组的具体下标，之后我们需要顺着链表一个个比较下去才能找到需要的，时间复杂度取决于链表长度，为O(n)。为了降低这个部分开销，在Java8中，当链表中元素超过8个后，会将链表转为红黑树，在这些位置进行查找时可以降低时间复杂度为O(logN)
+
+### 2、ConcurrentHashMap
+
+#### 1）Segment段
+
+与HashMap思路类似，但是支持并发操作。整个ConcurrentHashMap由一个个Segment组成
+
+#### 2）线程安全（Segment继承ReenTrantLock）
+
+ConcurrentHashMap是一个Segment数组，Segment通过继承ReentrantLock进行加锁，所以每次加锁的操作是锁住一个Segment，只要保证每一个Segment是线程安全的，也就实现了全局的线程安全
+
+#### 3）并行度（默认16）
+
+concurrencyLevel：并行级别、并发数、Segment 数。默认是 16， 也就是说 ConcurrentHashMap 有 16 个 Segments，所以理论上，这个时候，最多可以同时支 持 16 个线程并发写，只要它们的操作分别分布在不同的 Segment 上。这个值可以在初始化的时 候设置为其他值，但是一旦初始化以后，它是不可以扩容的。再具体到每个 Segment 内部，其实 每个 Segment 很像之前介绍的 HashMap，不过它要保证线程安全，所以处理起来要麻烦些
+
+#### 4）Java8实现（引入红黑树）
+
+引入红黑树进行改进
+
+### 3、HashTable（线程安全）
+
+Hashtable 是遗留类，很多映射的常用功能与 HashMap 类似，不同的是它承自 Dictionary 类，
+
+并且是线程安全的，任一时间只有一个线程能写 Hashtable，并发性不如 ConcurrentHashMap，
+
+因为 ConcurrentHashMap 引入了分段锁。Hashtable 不建议在新代码中使用，不需要线程安全
+
+的场合可以用 HashMap 替换，需要线程安全的场合可以用 ConcurrentHashMap 替换
+
+### 4、TreeMap（可排序）
+
+TreeMap实现SortedMap接口，能够将他保存的记录根据键排序，默认升序，也可以指定排序的比较器，当Iterator遍历TreeMap时，得到的记录是排过序的。如果使用排序的映射，建议使用TreeMap。
+
+在使用TreeMap时，key必须实现Comparable接口或者在构造TreeMap传入自定义的Comparator，否则会在运行时抛出java.lang.ClassCastException异常
+
+### 5、LinkedHashMap（记录插入顺序）
+
+LinkedHashMap 是 HashMap 的一个子类，保存了记录的插入顺序，在用 Iterator 遍历LinkedHashMap 时，先得到的记录肯定是先插入的，也可以在构造时带参数，按照访问次序排序。
