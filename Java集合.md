@@ -32,5 +32,15 @@ Vector也是通过数组实现，但是它支持线程同步，即某一时刻�
 
 ## 三、Set
 
+Set注重独一无二的性质，用于存储无序（存入和取出顺序不同）的元素，值不重复。对象相等的本质是对象hashCode值（Java根据对象内存地址计算出的此序号）判断的。**如果想让两个不同对象视为相等，必须覆盖Object的hashCode方法和equals方法**
+
+### 1、HashSet
+
+
+
+### 2、TreeSet
+
+### 3、LinkedHashSet
+
 ## 四、Map
 
