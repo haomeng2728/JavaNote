@@ -24,7 +24,7 @@ String s4 = "aaa";
 
 String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhihu.com/question/29884421/answer/113785601)
 
-## 2、Java核心数据结构
+## 2、Java核心数据结构，Java容器
 
 ### 2.1 List
 
@@ -35,7 +35,7 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 
 + Map实现
 + HashMap、HashTable、LinkedHashMap、TreeMap、ConcurrentHashMap的区别及实现原理
-+ HashMap的原理、底层、扩容机制
++ HashMap的原理、底层、扩容机制 [参考文章](https://www.iteye.com/blog/zhangshixi-672697)
 + HashTable的原理、底层、扩容机制
 + ConcurrentHashMap的原理、底层
 
@@ -43,6 +43,11 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 
 + Set的实现
 + HashSet、LinkedHashSet、TreeHashSet的区别及原理
+
+### 2.4 容器中的设计模式
+
++ 迭代器模式：将元素的实现与遍历分开
++ 适配器模式：java.util.Arrays可以转换为List类型
 
 ## 3、零散知识点
 
@@ -55,6 +60,8 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 + 重写equals()方法为什么要重写hashCode()方法
 + this和super的区别
 + 自动装箱与自动拆箱
+  + 装箱：将基本数据类型转为包装器类型(有一个IntegerCache，cache的界限可通过JVM参数设定)
+  + 拆箱：将包装器类型转为基本数据类型
 + 异常
 + Java中throw与throws的区别
 
@@ -231,4 +238,5 @@ leetcode100题：https://leetcode-cn.com/problemset/hot-100/
 + Dubbo
 + SpringBoot
 + 分布式原理
-+ 设计模式
++ 设计模式：
+  + 适配器模式体现在java容器、SpringMVC、SpringAOP
