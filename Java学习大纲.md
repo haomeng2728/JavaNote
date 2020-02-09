@@ -196,6 +196,8 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 4. 多个线程交替打印
 5. 两个栈实现队列
 6. 链表反转
+   + 递归法（temp记录head.next，newNode记录返回节点，递归实际上是压栈和弹栈的过程）
+   + 遍历法（pre记录每次反转的节点，next记录head.next，指导head != null）
 7. 逆波兰表达式
 8. 斐波那契数列（青蛙跳台阶）：递归和非递归
 
