@@ -53,12 +53,20 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 
 + 封装、继承、多态（面向对象编程的三大特性）
 + 重载与重写的区别
+  + 重写是父类与子类之间多态性的表现，在运行时起作用（动态多态性，譬如实现动态绑定）
+  + 重载是一个类中多态性的表现，在编译时起作用（静态多态性，譬如实现静态绑定）
 + final、finally、finalize
 + static关键字
 + i++与++i
 + equals()与==的区别
+  + equals比较的是值valueOf，==是对引用的比较
 + 重写equals()方法为什么要重写hashCode()方法
-+ this和super的区别
+  + 使用hashcode方法提前校验，可以避免每一次比对都调用equals方法，提高效率
+  + 保证是同一个对象，如果重写了equals方法，而没有重写hashcode方法，会出现equals相等的对象，hashcode不相等的情况，重写hashcode方法就是为了避免这种情况的出现。
++ this和super的区别：
+  + 代表事物不同：this表示所属函数的调用者对象，super表示父类空间的引用
+  + 使用前提不同：this不需要继承关系，super需要继承关系才能使用
+  + 调用的构造函数不同：super调用父类的构造函数，this调用所属类的构造函数
 + 自动装箱与自动拆箱
   + 装箱：将基本数据类型转为包装器类型(有一个IntegerCache，cache的界限可通过JVM参数设定)
   + 拆箱：将包装器类型转为基本数据类型
@@ -201,13 +209,13 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
      + 前序：用栈实现，push(root)->pop(root)->push(right)->push(left)
      + 中序：用栈实现，push(root)->push(left....left)->pop(root)->(cur = cur.right)
      + 后序：后序打印与逆后序打印的顺序相反，反转结果即可（双栈法或者Collections.reverse）
-4. 多个线程交替打印
-5. 两个栈实现队列
+4. 多个线程交替打印（生产者消费者问题）
+5. 两个栈实现队列（与后序非递归的双栈法类似）
 6. 链表反转
    + 递归法（temp记录head.next，newNode记录返回节点，递归实际上是压栈和弹栈的过程）
    + 遍历法（pre记录每次反转的节点，next记录head.next，指导head != null）
 7. 逆波兰表达式
-8. 斐波那契数列（青蛙跳台阶）：递归和非递归
+8. 斐波那契数列（青蛙跳台阶）：递归（设置停止条件发现规律）和非递归（使用数组记录fn的值，while实现）
 
 # 八、参考网站
 
