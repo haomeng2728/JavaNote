@@ -193,6 +193,14 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
    + 桶排序
    + 希尔排序
 3. 二叉树的前中后序遍历（递归与非递归）
+   + 递归法
+     + 前序：根左右
+     + 中序：左根右
+     + 后序：左右根
+   + 非递归
+     + 前序：用栈实现，push(root)->pop(root)->push(right)->push(left)
+     + 中序：用栈实现，push(root)->push(left....left)->pop(root)->(cur = cur.right)
+     + 后序：后序打印与逆后序打印的顺序相反，反转结果即可（双栈法或者Collections.reverse）
 4. 多个线程交替打印
 5. 两个栈实现队列
 6. 链表反转
