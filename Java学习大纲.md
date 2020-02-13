@@ -147,6 +147,8 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 
 # 五、计算机网络
 
+[参考文章](https://blog.csdn.net/qq_39322743/article/details/79700863)
+
 1. OSI七层模型、五层模型、TCP/IP四层模型
 2. 三次握手（为什么不是两次、四次）
 3. 四次挥手（为什么不是三次）
@@ -182,6 +184,7 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 12. GC时间
 13. 什么情况下出现内存溢出、内存泄漏
 14. GC回收器
+15. 堆中分配内存TLAB [参考文章](https://www.jianshu.com/p/8be816cbb5ed)
 
 # 七、手撕代码
 
@@ -209,12 +212,12 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
      + 前序：用栈实现，push(root)->pop(root)->push(right)->push(left)
      + 中序：用栈实现，push(root)->push(left....left)->pop(root)->(cur = cur.right)
      + 后序：后序打印与逆后序打印的顺序相反，反转结果即可（双栈法或者Collections.reverse）
-4. 多个线程交替打印（生产者消费者问题）
+4. 多个线程交替打印（生产者消费者问题）[参考文章](https://blog.csdn.net/pcwl1206/article/details/89429548)
 5. 两个栈实现队列（与后序非递归的双栈法类似）
 6. 链表反转
    + 递归法（temp记录head.next，newNode记录返回节点，递归实际上是压栈和弹栈的过程）
    + 遍历法（pre记录每次反转的节点，next记录head.next，指导head != null）
-7. 逆波兰表达式
+7. 逆波兰表达式(LeetCode 150)
 8. 斐波那契数列（青蛙跳台阶）：递归（设置停止条件发现规律）和非递归（使用数组记录fn的值，while实现）
 
 # 八、参考网站
