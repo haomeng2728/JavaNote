@@ -155,3 +155,8 @@ G1有计划的在Java堆中避免全区域的垃圾收集，跟踪每个Region�
 2、不要频繁的new生命周期很短object，这样频繁垃圾回收频繁压缩有可能会导致很多内存碎片，可以使用设计良好稳定运行的对象池（ObjectPool）技术来规避这种问题
 
 3、使用更好的编程技巧，比如更好的算法、更优的数据结构、更佳的解决策略等等
+
+## 七、java内存泄露
+
+[java内存泄露](https://blog.csdn.net/mengxpfighting/article/details/82184396)
+
