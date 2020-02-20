@@ -36,6 +36,8 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 + Map实现
 + HashMap、HashTable、LinkedHashMap、TreeMap、ConcurrentHashMap的区别及实现原理
 + HashMap的原理、底层、扩容机制 [参考文章](https://www.iteye.com/blog/zhangshixi-672697)
+  + 在jdk1.7中，在多线程环境下，扩容时会造成环形链或数据丢失。
+  + 在jdk1.8中，在多线程环境下，会发生数据覆盖的情况。
 + HashTable的原理、底层、扩容机制
 + ConcurrentHashMap的原理、底层
 
@@ -75,7 +77,7 @@ String s1 = new String("aaa")的具体过程[参考这篇文章](https://www.zhi
 
 # 二、多线程
 
-1. 线程与进程的区别
+1. 线程与进程的区别 [参考文章](https://blog.csdn.net/qq_37791134/article/details/81516023)
 2. 多线程的实现（Thread、Runnnable、callable+futuretask、线程池四种方法的区别、实现原理、适用场景）
 3. 线程的启动（start()和run()的区别）
 4. 线程传递参数（1、向run()方法传参；2、获取子线程的返回值）
