@@ -110,6 +110,8 @@ java.net下面提供的部分网络API，比如Socket、ServerSocket、HttpURLCo
 
 [参考文章](https://mp.weixin.qq.com/s?__biz=MzUyNzgyNzAwNg==&mid=2247483929&idx=1&sn=ed536aee5ac7f898fc5e640785769fd4&scene=21#wechat_redirect)
 
+[参考文章](https://blog.csdn.net/y277an/article/details/98000132)
+
 基于事件驱动思想，采用reactor（反应器）模式。当发起IO请求时，应用程序是非阻塞的。当SOCKET有流可读或写的时候，由操作系统通知应用程序，应用程序再将流读取到缓冲区或者写入系统。
 
 BIO与NIO的区别：
